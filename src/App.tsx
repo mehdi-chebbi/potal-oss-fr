@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import RHDashboard from './pages/RHDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import type { Offer, User } from './types';
+import { API_BASE_URL } from './config';
 
 const App = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -18,7 +19,7 @@ const App = () => {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const res = await fetch('http://localhost:8000/offers');
+        const res = await fetch(`${API_BASE_URL}/offers`);
         const data = await res.json();
         setOffers(data);
       } catch (err) {

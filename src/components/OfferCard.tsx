@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Offer } from '../types';
 import { getOfferTypeInfo } from '../utils/offerType';
+import { API_BASE_URL } from '../config';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
   const deadlineDate = new Date(offer.deadline);
@@ -45,7 +46,7 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
             onClick={async (e) => {
               e.preventDefault();
               try {
-                const response = await fetch(`http://localhost:8000${offer.tdr_url}`);
+                const response = await fetch(`${API_BASE_URL}${offer.tdr_url}`);
                 if (!response.ok) throw new Error('Failed to fetch TDR');
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);

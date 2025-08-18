@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; offerType: string; onClose: () => void }) => {
   const [formData, setFormData] = useState({
@@ -86,7 +87,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
       if (formData.liste_references) formDataToSend.append('liste_references', formData.liste_references);
       if (formData.offre_financiere) formDataToSend.append('offre_financiere', formData.offre_financiere);
       
-      const response = await fetch('http://localhost:8000/apply', {
+      const response = await fetch(`${API_BASE_URL}/apply`, {
         method: 'POST',
         body: formDataToSend,
       });

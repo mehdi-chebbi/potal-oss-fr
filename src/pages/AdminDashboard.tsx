@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Log, User } from '../types';
 import UserForm from '../components/forms/UserForm';
+import { API_BASE_URL } from '../config';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -21,21 +22,21 @@ const AdminDashboard = () => {
   
   const fetchUsers = async () => {
     const token = localStorage.getItem('token');
-    const res = await fetch('http://localhost:8000/users', { headers: { 'Authorization': `Bearer ${token}` } });
+    const res = await fetch(`${API_BASE_URL}/users`, { headers: { 'Authorization': `Bearer ${token}` } });
     const data = await res.json();
     setUsers(data);
   };
   
   const fetchLogs = async () => {
     const token = localStorage.getItem('token');
-    const res = await fetch('http://localhost:8000/logs', { headers: { 'Authorization': `Bearer ${token}` } });
+    const res = await fetch(`${API_BASE_URL}/logs`, { headers: { 'Authorization': `Bearer ${token}` } });
     const data = await res.json();
     setLogs(data);
   };
   
   const handleSaveUser = async (userData: any) => {
     const token = localStorage.getItem('token');
-    const url = editingUser ? `http://localhost:8000/users/${editingUser.id}` : 'http://localhost:8000/users';
+    const url = editingUser ? `${API_BASE_URL}/users/${editingUser.id}` : `${API_BASE_URL}/users`;
     const method = editingUser ? 'PUT' : 'POST';
     const res = await fetch(url, {
       method,
@@ -52,7 +53,7 @@ const AdminDashboard = () => {
   const handleDeleteUser = async (id: number) => {
     if (window.confirm('Delete this user?')) {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:8000/users/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });

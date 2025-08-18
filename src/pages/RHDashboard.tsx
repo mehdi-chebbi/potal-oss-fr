@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Application, Offer } from '../types';
 import OfferForm from '../components/forms/OfferForm';
 import { getOfferTypeInfo } from '../utils/offerType';
+import { API_BASE_URL } from '../config';
 
 const RHDashboard = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -41,7 +42,7 @@ const RHDashboard = () => {
   
   const fetchOffers = async () => {
     try {
-      const res = await fetch('http://localhost:8000/offers');
+      const res = await fetch(`${API_BASE_URL}/offers`);
       const data = await res.json();
       setOffers(data);
     } catch (err) {
@@ -52,7 +53,7 @@ const RHDashboard = () => {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:8000/applications', {
+      const res = await fetch(`${API_BASE_URL}/applications`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       const data = await res.json();
@@ -131,7 +132,7 @@ const RHDashboard = () => {
   
   const handleSaveOffer = async (data: any) => {
     const token = localStorage.getItem('token');
-    const url = editingOffer ? `http://localhost:8000/offers/${editingOffer.id}` : 'http://localhost:8000/offers';
+    const url = editingOffer ? `${API_BASE_URL}/offers/${editingOffer.id}` : `${API_BASE_URL}/offers`;
     const method = editingOffer ? 'PUT' : 'POST';
     const formDataToSend = new FormData();
     Object.keys(data).forEach(k => formDataToSend.append(k, data[k]));
@@ -155,7 +156,7 @@ const RHDashboard = () => {
   const handleDeleteOffer = async (id: number) => {
     if (window.confirm('Delete this offer?')) {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:8000/offers/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/offers/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -166,7 +167,7 @@ const RHDashboard = () => {
   const handleDeleteApplication = async (id: number) => {
     if (window.confirm('Delete this application?')) {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:8000/applications/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/applications/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -177,7 +178,7 @@ const RHDashboard = () => {
   const downloadDocument = async (url: string, filename: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8000${url}`, {
+      const response = await fetch(`${API_BASE_URL}${url}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

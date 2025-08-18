@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import type { User } from '../types';
+import { API_BASE_URL } from '../config';
 
 const LoginModal = ({ isOpen, onClose, onLogin }: { isOpen: boolean; onClose: () => void; onLogin: (user: User) => void }) => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }: { isOpen: boolean; onClose: ()
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/login', {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

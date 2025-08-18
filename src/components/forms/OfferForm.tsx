@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Offer } from '../../types';
+import { API_BASE_URL } from '../../config';
 
 const OfferForm = ({ offer, onSave, onCancel }: { offer?: Offer; onSave: (offer: any) => void; onCancel: () => void }) => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const OfferForm = ({ offer, onSave, onCancel }: { offer?: Offer; onSave: (offer:
     });
     if (formData.tdr) formDataToSend.append('tdr', formData.tdr);
     
-    const url = offer ? `http://localhost:8000/offers/${offer.id}` : 'http://localhost:8000/offers';
+    const url = offer ? `${API_BASE_URL}/offers/${offer.id}` : `${API_BASE_URL}/offers`;
     const method = offer ? 'PUT' : 'POST';
     
     try {
