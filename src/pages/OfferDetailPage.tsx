@@ -4,9 +4,11 @@ import type { Offer } from '../types';
 import ApplicationForm from '../components/ApplicationForm';
 import { getOfferTypeInfo } from '../utils/offerType';
 import { API_BASE_URL } from '../config';
+import { useLang } from '../utils/lang';
 
 const OfferDetailPage = () => {
   const { id } = useParams<{ id: string }>();
+  const { langPath } = useLang();
   const [offer, setOffer] = useState<Offer | null>(null);
   const [loading, setLoading] = useState(true);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
@@ -48,7 +50,7 @@ const OfferDetailPage = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Offer Not Found</h2>
           <p className="text-gray-600 mb-6">The offer you're looking for doesn't exist or has been removed.</p>
           <Link
-            to="/"
+            to={langPath('/')}
             className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
           >
             Back to Home
@@ -68,7 +70,7 @@ const OfferDetailPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-6">
           <Link
-            to="/"
+            to={langPath('/')}
             className="inline-flex items-center text-green-600 hover:text-green-800"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +166,7 @@ const OfferDetailPage = () => {
             
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/"
+                to={langPath('/')}
                 className="px-6 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
               >
                 Back to Opportunities

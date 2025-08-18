@@ -2,8 +2,11 @@ import { useState } from 'react';
 import OfferCard from '../components/OfferCard';
 import type { Offer } from '../types';
 import { getOfferTypeInfo } from '../utils/offerType';
+import { useLang } from '../utils/lang';
+import { t } from '../i18n';
 
 const HomePage = ({ offers }: { offers: Offer[] }) => {
+  const { lang } = useLang();
   const [filters, setFilters] = useState({
     search: '',
     type: '',
@@ -19,8 +22,8 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
   const uniqueDepartments = Array.from(new Set(offers.map(offer => offer.department)));
   
   const statusOptions = [
-    { value: 'ongoing', label: 'Ongoing' },
-    { value: 'closed', label: 'Closed' }
+    { value: 'ongoing', label: t(lang, 'home.filters.status.ongoing') },
+    { value: 'closed', label: t(lang, 'home.filters.status.closed') }
   ];
   
   const filteredOffers = offers.filter(offer => {
@@ -67,23 +70,23 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           <div className="mb-6">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="text-green-200 font-medium text-sm">🌍 Founded 1992 • Based in Tunis since 2000</span>
+              <span className="text-green-200 font-medium text-sm">🌍 {t(lang, 'home.hero.badge')}</span>
             </div>
           </div>
           <h1 className="text-5xl sm:text-7xl font-black text-white leading-tight mb-6 drop-shadow-lg">
-            Sahara and Sahel
+            {t(lang, 'home.hero.title1')}
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-300">
-              Observatory
+              {t(lang, 'home.hero.title2')}
             </span>
           </h1>
           <p className="text-xl sm:text-2xl text-green-100 mb-10 leading-relaxed max-w-3xl mx-auto font-light">
-            Creating partnerships to address water resources management and implement international agreements on land degradation, biodiversity and climate change in Africa.
+            {t(lang, 'home.hero.subtitle')}
           </p>
           <a
             href="#opportunities"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-full shadow-2xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
           >
-            <span>View Current Opportunities</span>
+            <span>{t(lang, 'home.hero.cta')}</span>
             <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
@@ -95,18 +98,18 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200 mb-4">
-              <span className="text-green-800 font-semibold text-sm">💼 Career Opportunities</span>
+              <span className="text-green-800 font-semibold text-sm">💼 {t(lang, 'home.section.badge')}</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">
-              Current <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Opportunities</span>
+              {t(lang, 'home.section.title')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">Help us build a resilient and sustainable future for Africa's drylands.</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">{t(lang, 'home.section.subtitle')}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 sm:mb-0">Filter Opportunities</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 sm:mb-0">{t(lang, 'home.filters.title')}</h3>
               <button 
                 onClick={() => setShowFilters(!showFilters)}
                 className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
@@ -114,20 +117,20 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                 </svg>
-                {showFilters ? 'Hide Filters' : 'Show Filters'}
+                {showFilters ? t(lang, 'home.filters.toggle.hide') : t(lang, 'home.filters.toggle.show')}
               </button>
             </div>
             
             {showFilters && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
                 <div>
-                  <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                  <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">{t(lang, 'home.filters.search.label')}</label>
                   <div className="relative">
                     <input
                       type="text"
                       id="search"
                       name="search"
-                      placeholder="Search opportunities..."
+                      placeholder={t(lang, 'home.filters.search.placeholder')}
                       className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                       value={filters.search}
                       onChange={handleFilterChange}
@@ -139,7 +142,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 </div>
                 
                 <div>
-                  <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                  <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-1">{t(lang, 'home.filters.type.label')}</label>
                   <select
                     id="type"
                     name="type"
@@ -147,7 +150,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                     value={filters.type}
                     onChange={handleFilterChange}
                   >
-                    <option value="">All Types</option>
+                    <option value="">{t(lang, 'home.filters.type.all')}</option>
                     {uniqueTypes.map(type => (
                       <option key={type} value={type}>
                         {getOfferTypeInfo(type).name}
@@ -157,7 +160,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 </div>
                 
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">{t(lang, 'home.filters.country.label')}</label>
                   <select
                     id="country"
                     name="country"
@@ -165,7 +168,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                     value={filters.country}
                     onChange={handleFilterChange}
                   >
-                    <option value="">All Countries</option>
+                    <option value="">{t(lang, 'home.filters.country.all')}</option>
                     {uniqueCountries.map(country => (
                       <option key={country} value={country}>
                         {country}
@@ -175,7 +178,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 </div>
                 
                 <div>
-                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                  <label htmlFor="department" className="block text sm font-medium text-gray-700 mb-1">{t(lang, 'home.filters.department.label')}</label>
                   <select
                     id="department"
                     name="department"
@@ -183,7 +186,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                     value={filters.department}
                     onChange={handleFilterChange}
                   >
-                    <option value="">All Departments</option>
+                    <option value="">{t(lang, 'home.filters.department.all')}</option>
                     {uniqueDepartments.map(department => (
                       <option key={department} value={department}>
                         {department}
@@ -193,7 +196,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 </div>
                 
                 <div>
-                  <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">{t(lang, 'home.filters.status.label')}</label>
                   <select
                     id="status"
                     name="status"
@@ -214,7 +217,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
             <div className="flex flex-wrap gap-2 mb-4">
               {filters.search && (
                 <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                  Search: {filters.search}
+                  {t(lang, 'home.filters.active.search')}: {filters.search}
                   <button 
                     onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
                     className="ml-2 text-blue-600 hover:text-blue-900"
@@ -227,7 +230,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
               )}
               {filters.type && (
                 <span className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
-                  Type: {getOfferTypeInfo(filters.type).name}
+                  {t(lang, 'home.filters.active.type')}: {getOfferTypeInfo(filters.type).name}
                   <button 
                     onClick={() => setFilters(prev => ({ ...prev, type: '' }))}
                     className="ml-2 text-purple-600 hover:text-purple-900"
@@ -240,7 +243,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
               )}
               {filters.country && (
                 <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                  Country: {filters.country}
+                  {t(lang, 'home.filters.active.country')}: {filters.country}
                   <button 
                     onClick={() => setFilters(prev => ({ ...prev, country: '' }))}
                     className="ml-2 text-green-600 hover:text-green-900"
@@ -253,7 +256,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
               )}
               {filters.department && (
                 <span className="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
-                  Department: {filters.department}
+                  {t(lang, 'home.filters.active.department')}: {filters.department}
                   <button 
                     onClick={() => setFilters(prev => ({ ...prev, department: '' }))}
                     className="ml-2 text-yellow-600 hover:text-yellow-900"
@@ -266,7 +269,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
               )}
               {filters.status && filters.status !== 'ongoing' && (
                 <span className="inline-flex items-center px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
-                  Status: {statusOptions.find(opt => opt.value === filters.status)?.label}
+                  {t(lang, 'home.filters.active.status')}: {statusOptions.find(opt => opt.value === filters.status)?.label}
                   <button 
                     onClick={() => setFilters(prev => ({ ...prev, status: 'ongoing' }))}
                     className="ml-2 text-indigo-600 hover:text-indigo-900"
@@ -287,15 +290,15 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Clear All Filters
+                {t(lang, 'home.filters.clearAll')}
               </button>
             )}
           </div>
           
           <div className="mb-6 text-gray-600">
-            Showing <span className="font-semibold">{filteredOffers.length}</span> of <span className="font-semibold">{offers.length}</span> opportunities
+            {t(lang, 'home.showing')} <span className="font-semibold">{filteredOffers.length}</span> {t(lang, 'home.of')} <span className="font-semibold">{offers.length}</span> {t(lang, 'home.opportunities')}
             {filters.status !== 'ongoing' && (
-              <span> (Status: {statusOptions.find(opt => opt.value === filters.status)?.label})</span>
+              <span> ({t(lang, 'home.filters.status.label')}: {statusOptions.find(opt => opt.value === filters.status)?.label})</span>
             )}
           </div>
           
@@ -306,13 +309,13 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">No opportunities match your filters</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your filter criteria or check back later for new opportunities</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{t(lang, 'home.noresults.title')}</h3>
+              <p className="text-gray-600 mb-6">{t(lang, 'home.noresults.subtitle')}</p>
               <button
                 onClick={clearFilters}
                 className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white font-medium rounded-lg hover:from-green-700 hover:to-green-800 transition-colors"
               >
-                Clear Filters
+                {t(lang, 'home.noresults.clear')}
               </button>
             </div>
           ) : (
@@ -332,20 +335,20 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
-            <span className="text-orange-200 font-medium text-sm">🌍 Join the Movement</span>
+            <span className="text-orange-200 font-medium text-sm">🌍 {t(lang, 'home.cta.badge')}</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-black mb-6">
-            Be Part of the Change
+            {t(lang, 'home.cta.title')}
           </h2>
           <p className="text-xl sm:text-2xl opacity-90 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
-            Work with a pan-African organization at the forefront of climate resilience and sustainable development.
+            {t(lang, 'home.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <a
               href="#opportunities"
               className="inline-flex items-center px-8 py-4 bg-white text-orange-600 font-bold rounded-full shadow-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
             >
-              <span>Explore Open Positions</span>
+              <span>{t(lang, 'home.cta.explore')}</span>
               <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
