@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import type { Offer } from '../types';
 import ApplicationForm from '../components/ApplicationForm';
 import { getOfferTypeInfo } from '../utils/offerType';
+import { API_BASE_URL } from '../config';
 
 const OfferDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,7 +14,7 @@ const OfferDetailPage = () => {
   useEffect(() => {
     const fetchOffer = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/offers/${id}`);
+        const response = await fetch(`${API_BASE_URL}/offers/${id}`);
         if (response.ok) {
           const data = await response.json();
           setOffer(data);
@@ -135,7 +136,7 @@ const OfferDetailPage = () => {
                   onClick={async (e) => {
                     e.preventDefault();
                     try {
-                      const response = await fetch(`http://localhost:8000${offer.tdr_url}`);
+                      const response = await fetch(`${API_BASE_URL}${offer.tdr_url}`);
                       if (!response.ok) throw new Error('Failed to fetch TDR');
                       const blob = await response.blob();
                       const url = window.URL.createObjectURL(blob);
