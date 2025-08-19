@@ -4,12 +4,14 @@ import type { Offer } from '../types';
 import ApplicationForm from '../components/ApplicationForm';
 import { getOfferTypeInfo } from '../utils/offerType';
 import { API_BASE_URL } from '../config';
+import { useI18n } from '../i18n';
 
 const OfferDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [offer, setOffer] = useState<Offer | null>(null);
   const [loading, setLoading] = useState(true);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const { t, currentLangPrefix } = useI18n();
   
   useEffect(() => {
     const fetchOffer = async () => {
@@ -45,13 +47,13 @@ const OfferDetailPage = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Offer Not Found</h2>
-          <p className="text-gray-600 mb-6">The offer you're looking for doesn't exist or has been removed.</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('detail.notFound.title')}</h2>
+          <p className="text-gray-600 mb-6">{t('detail.notFound.text')}</p>
           <Link
-            to="/"
+            to={currentLangPrefix || '/'}
             className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
           >
-            Back to Home
+            {t('detail.backToHome')}
           </Link>
         </div>
       </div>
@@ -68,13 +70,13 @@ const OfferDetailPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-6">
           <Link
-            to="/"
+            to={currentLangPrefix || '/'}
             className="inline-flex items-center text-green-600 hover:text-green-800"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Back to Opportunities
+            {t('detail.backToOpps')}
           </Link>
         </div>
         
@@ -85,7 +87,7 @@ const OfferDetailPage = () => {
                 {offerTypeInfo.name}
               </span>
               <span className={`px-3 py-1 text-sm font-semibold rounded-full ${isExpired ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
-                {isExpired ? 'Expired' : `Closes: ${deadlineDate.toLocaleDateString()}`}
+                {isExpired ? t('offer.expired') : `${t('offer.closes')} ${deadlineDate.toLocaleDateString()}`}
               </span>
             </div>
             
@@ -93,29 +95,29 @@ const OfferDetailPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Offer Details</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('detail.details')}</h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm text-gray-500">Reference</p>
+                    <p className="text-sm text-gray-500">{t('label.reference')}</p>
                     <p className="font-medium text-gray-900">{offer.reference}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Country</p>
+                    <p className="text-sm text-gray-500">{t('label.country')}</p>
                     <p className="font-medium text-gray-900">{offer.country}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Department</p>
+                    <p className="text-sm text-gray-500">{t('label.department')}</p>
                     <p className="font-medium text-gray-900">{offer.department}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Deadline</p>
+                    <p className="text-sm text-gray-500">{t('label.deadline')}</p>
                     <p className="font-medium text-gray-900">{deadlineDate.toLocaleDateString()}</p>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Information</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('label.project')} Information</h3>
                 <div className="bg-gray-50 rounded-lg p-4 h-full">
                   <p className="text-gray-700 whitespace-pre-line">{offer.projet}</p>
                 </div>
@@ -123,7 +125,7 @@ const OfferDetailPage = () => {
             </div>
             
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Description</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('label.description')}</h3>
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-gray-700 whitespace-pre-line">{offer.description}</p>
               </div>
@@ -131,13 +133,13 @@ const OfferDetailPage = () => {
             
             {offer.tdr_url && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Documents</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('label.documents')}</h3>
                 <button
                   onClick={async (e) => {
                     e.preventDefault();
                     try {
                       const response = await fetch(`${API_BASE_URL}${offer.tdr_url}`);
-                      if (!response.ok) throw new Error('Failed to fetch TDR');
+                      if (!response.ok) throw new Error('fetch_fail');
                       const blob = await response.blob();
                       const url = window.URL.createObjectURL(blob);
                       const a = document.createElement('a');
@@ -148,7 +150,7 @@ const OfferDetailPage = () => {
                       document.body.removeChild(a);
                       window.URL.revokeObjectURL(url);
                     } catch (err) {
-                      alert('Failed to download TDR');
+                      alert(t('offer.downloadTdr.error'));
                       console.error(err);
                     }
                   }}
@@ -157,24 +159,24 @@ const OfferDetailPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  Download TDR (PDF)
+                  {t('offer.downloadTdr')}
                 </button>
               </div>
             )}
             
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/"
+                to={currentLangPrefix || '/'}
                 className="px-6 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
               >
-                Back to Opportunities
+                {t('detail.backToOpps')}
               </Link>
               {!isExpired && (
                 <button
                   onClick={() => setShowApplicationForm(true)}
                   className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
                 >
-                  Apply Now
+                  {t('apply.button')}
                 </button>
               )}
             </div>
@@ -198,7 +200,7 @@ const OfferDetailPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-white">Submit Application</h3>
+                    <h3 className="text-xl font-semibold text-white">{t('apply.submit.title')}</h3>
                   </div>
                   <button
                     onClick={() => setShowApplicationForm(false)}
