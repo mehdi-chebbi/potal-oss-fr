@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import LoginModal from './components/LoginModal';
 import HomePage from './pages/HomePage';
 import OfferDetailPage from './pages/OfferDetailPage';
@@ -8,6 +8,18 @@ import RHDashboard from './pages/RHDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import type { Offer, User } from './types';
 import { API_BASE_URL } from './config';
+import { useI18n } from './i18n';
+
+const LangLink = ({ to, className, children }: { to: string; className?: string; children: React.ReactNode }) => {
+  const { currentLangPrefix } = useI18n();
+  const isAbsolute = to.startsWith('http');
+  const path = isAbsolute ? to : `${currentLangPrefix}${to === '/' ? '' : to}` || '/';
+  return (
+    <Link to={path} className={className}>
+      {children}
+    </Link>
+  );
+};
 
 const App = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -15,6 +27,9 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
+  const { t, currentLangPrefix } = useI18n();
+  const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const fetchOffers = async () => {
@@ -74,12 +89,11 @@ const App = () => {
   }
   
   return (
-    <Router>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         <header className="bg-white shadow-lg border-b border-gray-200">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="w-full py-4 flex items-center justify-between">
-              <Link 
+              <LangLink 
                 to={user ? (user.role === 'rh' ? '/rh-dashboard' : '/admin-dashboard') : '/'} 
                 className="flex items-center group transition-all duration-200 hover:scale-105"
               >
@@ -91,22 +105,22 @@ const App = () => {
                 </div>
                 <div className="ml-4">
                   <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    OSS Opportunities
+                    {t('app.brand.title')}
                   </span>
-                  <p className="text-sm text-gray-500 font-medium">Sahara and Sahel Observatory</p>
+                  <p className="text-sm text-gray-500 font-medium">{t('app.brand.subtitle')}</p>
                 </div>
-              </Link>
+              </LangLink>
               
               <div className="flex items-center space-x-4">
-                <Link
+                <LangLink
                   to="/about"
                   className="hidden sm:inline-flex items-center px-4 py-2 text-gray-700 hover:text-green-600 font-medium rounded-lg hover:bg-green-50 transition-colors duration-200"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  About Us
-                </Link>
+                  {t('nav.about')}
+                </LangLink>
                 
                 {user ? (
                   <div className="flex items-center space-x-4">
@@ -117,7 +131,7 @@ const App = () => {
                         </span>
                       </div>
                       <div className="hidden sm:block">
-                        <p className="text-sm font-medium text-gray-900">Welcome back,</p>
+                        <p className="text-sm font-medium text-gray-900">{t('nav.welcome')}</p>
                         <p className="text-sm text-gray-600 font-semibold">{user.name}</p>
                       </div>
                       <div className={`hidden sm:flex px-2 py-1 rounded-full text-xs font-medium ${
@@ -125,7 +139,7 @@ const App = () => {
                           ? 'bg-purple-100 text-purple-800' 
                           : 'bg-blue-100 text-blue-800'
                       }`}>
-                        {user.role === 'admin' ? 'Administrator' : 'HR Manager'}
+                        {user.role === 'admin' ? t('role.admin') : t('role.rh')}
                       </div>
                     </div>
                     <button 
@@ -135,7 +149,7 @@ const App = () => {
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                       </svg>
-                      Logout
+                      {t('nav.logout')}
                     </button>
                   </div>
                 ) : (
@@ -146,22 +160,40 @@ const App = () => {
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7c1.13 0 2.08.402 2.599 1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Login
+                    {t('nav.login')}
                   </button>
                 )}
+
+                <button
+                  onClick={() => {
+                    const path = location.pathname;
+                    if (path.startsWith('/fr')) {
+                      const next = path.replace('/fr', '/en');
+                      navigate(next || '/en');
+                    } else if (path.startsWith('/en')) {
+                      const next = path.replace('/en', '/fr');
+                      navigate(next || '/fr');
+                    } else {
+                      navigate('/fr' + (path === '/' ? '' : path));
+                    }
+                  }}
+                  className="inline-flex items-center px-3 py-2 rounded-lg border text-sm font-medium hover:bg-gray-50"
+                >
+                  {currentLangPrefix === '/fr' ? 'FR' : currentLangPrefix === '/en' ? 'EN' : 'EN'}
+                </button>
               </div>
             </div>
             
             <div className="sm:hidden border-t border-gray-100 py-2">
-              <Link
+              <LangLink
                 to="/about"
                 className="flex items-center px-4 py-2 text-gray-700 hover:text-green-600 font-medium rounded-lg hover:bg-green-50 transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                About Us
-              </Link>
+                {t('nav.about')}
+              </LangLink>
             </div>
             
             {user && (
@@ -171,12 +203,12 @@ const App = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2m-6 6h6" />
                   </svg>
-                  <span className="text-gray-500">Dashboard</span>
+                  <span className="text-gray-500">{t('nav.dashboard')}</span>
                   <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                   <span className="text-gray-700 font-medium capitalize">
-                    {user.role === 'rh' ? 'HR Management' : 'Administration'}
+                    {user.role === 'rh' ? t('nav.hr') : t('nav.admin')}
                   </span>
                 </div>
               </div>
@@ -186,9 +218,17 @@ const App = () => {
         
         <main className="flex-1">
           <Routes>
+            {/* English (default and /en) */}
             <Route path="/" element={user ? <Navigate to={user.role === 'rh' ? '/rh-dashboard' : '/admin-dashboard'} /> : <HomePage offers={offers} />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/offer/:id" element={<OfferDetailPage />} />
+            <Route path="/en" element={<HomePage offers={offers} />} />
+            <Route path="/en/about" element={<AboutPage />} />
+            <Route path="/en/offer/:id" element={<OfferDetailPage />} />
+            {/* French */}
+            <Route path="/fr" element={<HomePage offers={offers} />} />
+            <Route path="/fr/about" element={<AboutPage />} />
+            <Route path="/fr/offer/:id" element={<OfferDetailPage />} />
             {user?.role === 'rh' && <Route path="/rh-dashboard" element={<RHDashboard />} />}
             {user?.role === 'admin' && <Route path="/admin-dashboard" element={<AdminDashboard />} />}
             <Route path="*" element={<Navigate to="/" />} />
@@ -203,10 +243,10 @@ const App = () => {
                   <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-green-600 to-green-700 flex items-center justify-center">
                     <span className="text-white font-bold text-lg">OSS</span>
                   </div>
-                  <span className="ml-3 text-lg font-bold text-gray-900">OSS Opportunities</span>
+                  <span className="ml-3 text-lg font-bold text-gray-900">{t('app.brand.title')}</span>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  Sahara and Sahel Observatory - Connecting talent with opportunities across North Africa.
+                  {t('app.brand.subtitle')} - Connecting talent with opportunities across North Africa.
                 </p>
                 <div className="flex space-x-4">
                   <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-green-100 transition-colors cursor-pointer">
@@ -223,24 +263,24 @@ const App = () => {
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Quick Links</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{t('footer.quickLinks')}</h3>
                 <div className="space-y-2">
-                  <Link to="/about" className="block text-gray-600 hover:text-green-600 transition-colors">About OSS</Link>
-                  <a href="#opportunities" className="block text-gray-600 hover:text-green-600 transition-colors">Current Opportunities</a>
-                  <a href="#" className="block text-gray-600 hover:text-green-600 transition-colors">Application Process</a>
-                  <a href="#" className="block text-gray-600 hover:text-green-600 transition-colors">Contact Us</a>
+                  <LangLink to="/about" className="block text-gray-600 hover:text-green-600 transition-colors">{t('footer.about')}</LangLink>
+                  <a href="#opportunities" className="block text-gray-600 hover:text-green-600 transition-colors">{t('footer.currentOpportunities')}</a>
+                  <a href="#" className="block text-gray-600 hover:text-green-600 transition-colors">{t('footer.applicationProcess')}</a>
+                  <a href="#" className="block text-gray-600 hover:text-green-600 transition-colors">{t('footer.contactUs')}</a>
                 </div>
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{t('footer.contactInformation')}</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <svg className="w-5 h-5 text-green-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <p className="text-gray-600 text-sm">Tunis, Tunisia</p>
+                    <p className="text-gray-600 text-sm">{t('footer.location')}</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <svg className="w-5 h-5 text-green-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,12 +295,12 @@ const App = () => {
             <div className="mt-8 pt-8 border-t border-gray-200">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-500 text-sm">
-                  &copy; {new Date().getFullYear()} Sahara and Sahel Observatory. All rights reserved.
+                  &copy; {new Date().getFullYear()} {t('app.brand.subtitle')}. {t('footer.copyright')}
                 </p>
                 <div className="flex space-x-6 mt-4 md:mt-0">
-                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">Privacy Policy</a>
-                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">Terms of Service</a>
-                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">Accessibility</a>
+                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">{t('footer.privacy')}</a>
+                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">{t('footer.terms')}</a>
+                  <a href="#" className="text-gray-500 hover:text-green-600 text-sm transition-colors">{t('footer.accessibility')}</a>
                 </div>
               </div>
             </div>
@@ -269,7 +309,6 @@ const App = () => {
         
         <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} onLogin={handleLogin} />
       </div>
-    </Router>
   );
 };
 

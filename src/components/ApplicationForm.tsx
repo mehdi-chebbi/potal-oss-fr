@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { API_BASE_URL } from '../config';
+import { useI18n } from '../i18n';
 
 const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; offerType: string; onClose: () => void }) => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const { t } = useI18n();
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -117,8 +119,8 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="mt-3 text-lg font-medium text-gray-900">Application Submitted!</h3>
-        <p className="mt-2 text-sm text-gray-500">Thank you for applying.</p>
+        <h3 className="mt-3 text-lg font-medium text-gray-900">{t('apply.submitted.title')}</h3>
+        <p className="mt-2 text-sm text-gray-500">{t('apply.submitted.text')}</p>
       </div>
     );
   }
