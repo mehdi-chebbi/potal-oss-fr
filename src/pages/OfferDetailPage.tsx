@@ -38,7 +38,7 @@ const OfferDetailPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin h-12 w-12 border-t-2 border-green-600"></div>
+        <div className="animate-spin h-12 w-12 border-t-2 border-yellow-500"></div>
       </div>
     );
   }
@@ -51,7 +51,7 @@ const OfferDetailPage = () => {
           <p className="text-gray-600 mb-6">{t('detail.notFound.text')}</p>
           <Link
             to={currentLangPrefix || '/'}
-            className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+            className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
           >
             {t('detail.backToHome')}
           </Link>
@@ -71,7 +71,7 @@ const OfferDetailPage = () => {
         <div className="mb-6">
           <Link
             to={currentLangPrefix || '/'}
-            className="inline-flex items-center text-green-600 hover:text-green-800"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -86,7 +86,7 @@ const OfferDetailPage = () => {
               <span className={`px-3 py-1 text-sm font-semibold rounded-full ${offerTypeInfo.color}`}>
                 {offerTypeInfo.name}
               </span>
-              <span className={`px-3 py-1 text-sm font-semibold rounded-full ${isExpired ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+              <span className={`px-3 py-1 text-sm font-semibold rounded-full ${isExpired ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'}`}>
                 {isExpired ? t('offer.expired') : `${t('offer.closes')} ${deadlineDate.toLocaleDateString()}`}
               </span>
             </div>
@@ -174,7 +174,7 @@ const OfferDetailPage = () => {
               {!isExpired && (
                 <button
                   onClick={() => setShowApplicationForm(true)}
-                  className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+                  className="px-6 py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
                 >
                   {t('apply.button')}
                 </button>
@@ -192,7 +192,7 @@ const OfferDetailPage = () => {
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             
             <div className="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
-              <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4">
+              <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-3">

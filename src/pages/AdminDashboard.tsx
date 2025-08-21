@@ -269,7 +269,7 @@ const AdminDashboard = () => {
                   {logs.map(log => (
                     <li key={log.id} className="px-6 py-4 hover:bg-gray-50 transition-colors duration-150">
                       <div className="flex items-start space-x-3">
-                        <div className="flex-shrink-0 w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                        <div className="flex-shrink-0 w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
                         <div className="flex-1 min-w-0">
                           <p className="text-gray-900 font-medium leading-relaxed">{log.message}</p>
                           <div className="flex items-center mt-2 text-sm text-gray-500">

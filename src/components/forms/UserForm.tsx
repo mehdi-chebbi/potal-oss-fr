@@ -63,7 +63,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
             type="text"
             id="name"
             name="name"
-            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
+            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 ${
               errors.name 
                 ? 'border-red-300 bg-red-50 text-red-900 placeholder-red-300' 
                 : 'border-gray-300 bg-white hover:border-gray-400'
@@ -102,7 +102,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
             type="email"
             id="email"
             name="email"
-            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
+            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 ${
               errors.email 
                 ? 'border-red-300 bg-red-50 text-red-900 placeholder-red-300' 
                 : 'border-gray-300 bg-white hover:border-gray-400'
@@ -140,7 +140,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
           <select
             id="role"
             name="role"
-            className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm appearance-none cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400"
+            className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm appearance-none cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 hover:border-gray-400"
             value={formData.role}
             onChange={handleChange}
           >
@@ -168,7 +168,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
             type="password"
             id="password"
             name="password"
-            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
+            className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 ${
               errors.password 
                 ? 'border-red-300 bg-red-50 text-red-900 placeholder-red-300' 
                 : 'border-gray-300 bg-white hover:border-gray-400'
@@ -209,7 +209,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 ${
+              className={`w-full px-4 py-3 border rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 ${
                 errors.confirmPassword 
                   ? 'border-red-300 bg-red-50 text-red-900 placeholder-red-300' 
                   : 'border-gray-300 bg-white hover:border-gray-400'
@@ -250,7 +250,7 @@ const UserForm = ({ user, onSave, onCancel }: { user?: User; onSave: (user: Omit
         </button>
         <button
           type="submit"
-          className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={user ? "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" : "M12 6v6m0 0v6m0-6h6m-6 0H6"} />

@@ -114,8 +114,8 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
   if (success) {
     return (
       <div className="text-center p-8">
-        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-          <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor">
+        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+          <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
@@ -137,7 +137,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           type="text"
           id="full_name"
           name="full_name"
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-yellow-500"
           value={formData.full_name}
           onChange={handleChange}
           required
@@ -150,7 +150,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           type="email"
           id="email"
           name="email"
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-yellow-500"
           value={formData.email}
           onChange={handleChange}
           required
@@ -163,7 +163,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           type="tel"
           id="tel_number"
           name="tel_number"
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-yellow-500"
           value={formData.tel_number}
           onChange={handleChange}
           required
@@ -176,7 +176,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           type="text"
           id="applicant_country"
           name="applicant_country"
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-yellow-500"
           value={formData.applicant_country}
           onChange={handleChange}
           required
@@ -191,7 +191,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           name="cv"
           accept=".pdf"
           onChange={handleFileChange}
-          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
           required
         />
       </div>
@@ -204,7 +204,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           name="diplome"
           accept=".pdf"
           onChange={handleFileChange}
-          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
           required
         />
       </div>
@@ -217,7 +217,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           name="id_card"
           accept=".pdf"
           onChange={handleFileChange}
-          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
           required
         />
       </div>
@@ -230,7 +230,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
           name="cover_letter"
           accept=".pdf"
           onChange={handleFileChange}
-          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+          className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
           required
         />
       </div>
@@ -248,7 +248,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="declaration_sur_honneur"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -261,7 +261,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="fiche_de_referencement"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -274,7 +274,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="extrait_registre"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -287,7 +287,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="note_methodologique"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -300,7 +300,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="liste_references"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -313,7 +313,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
                 name="offre_financiere"
                 accept=".pdf"
                 onChange={handleFileChange}
-                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                className="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 required
               />
             </div>
@@ -332,7 +332,7 @@ const ApplicationForm = ({ offerId, offerType, onClose }: { offerId: number; off
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 disabled:opacity-50"
+          className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 disabled:opacity-50"
         >
           {isSubmitting ? 'Submitting...' : 'Submit Application'}
         </button>

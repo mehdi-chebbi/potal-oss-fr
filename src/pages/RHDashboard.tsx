@@ -422,7 +422,7 @@ const RHDashboard = () => {
                   </span>
                 )}
                 {offersFilters.country && (
-                  <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                  <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
                     {t('rh.country')}: {offersFilters.country}
                     <button 
                       onClick={() => setOffersFilters(prev => ({ ...prev, country: '' }))}
@@ -717,7 +717,7 @@ const RHDashboard = () => {
                   </span>
                 )}
                 {applicationsFilters.applicantCountry && (
-                  <span className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                  <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
                     {t('rh.label.country')}: {applicationsFilters.applicantCountry}
                     <button 
                       onClick={() => setApplicationsFilters(prev => ({ ...prev, applicantCountry: '' }))}
@@ -781,7 +781,7 @@ const RHDashboard = () => {
                                   app.offer_type === 'manifestation' ? 'bg-purple-100 text-purple-800' :
                                   app.offer_type === 'appel_d_offre_service' ? 'bg-yellow-100 text-yellow-800' :
                                   app.offer_type === 'appel_d_offre_equipement' ? 'bg-orange-100 text-orange-800' :
-                                  'bg-green-100 text-green-800'
+                                  'bg-blue-100 text-blue-800'
                                 }`}>
                                   {app.offer_type === 'candidature' ? 'Candidature' :
                                    app.offer_type === 'manifestation' ? 'Manifestation' :

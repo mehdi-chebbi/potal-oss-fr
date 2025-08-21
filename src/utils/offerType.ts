@@ -9,7 +9,7 @@ export const getOfferTypeInfo = (type: string) => {
     case 'appel_d_offre_equipement':
       return { name: "Appel d'Offre (Equipement)", color: 'bg-orange-100 text-orange-800' };
     case 'consultation':
-      return { name: 'Consultation', color: 'bg-green-100 text-green-800' };
+      return { name: 'Consultation', color: 'bg-blue-100 text-blue-800' };
     default:
       return { name: type, color: 'bg-gray-100 text-gray-800' };
   }
