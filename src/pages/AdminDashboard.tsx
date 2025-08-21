@@ -61,7 +61,7 @@ const AdminDashboard = () => {
     }
   };
   
-  if (isLoading) return <div className="flex justify-center items-center h-64"><div className="animate-spin h-12 w-12 border-t-2 border-green-600"></div></div>;
+  if (isLoading) return <div className="flex justify-center items-center h-64"><div className="animate-spin h-12 w-12 border-t-2 border-yellow-500"></div></div>;
   
   return (
     <div className="py-8 bg-gray-50 min-h-screen">
@@ -72,8 +72,8 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab('users')} 
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 ${
                 activeTab === 'users' 
-                  ? 'border-green-500 text-green-600' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                 ? 'border-yellow-500 text-yellow-600' 
+                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -87,8 +87,8 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab('logs')} 
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 ${
                 activeTab === 'logs' 
-                  ? 'border-green-500 text-green-600' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                 ? 'border-yellow-500 text-yellow-600' 
+                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -121,7 +121,7 @@ const AdminDashboard = () => {
               </div>
               <button 
                 onClick={() => { setEditingUser(null); setShowUserForm(true); }} 
-                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white font-medium rounded-lg shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -159,7 +159,7 @@ const AdminDashboard = () => {
                   <p className="text-gray-500 mb-6">Get started by creating your first user</p>
                   <button 
                     onClick={() => { setEditingUser(null); setShowUserForm(true); }} 
-                    className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors duration-200"
+                    className="inline-flex items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition-colors duration-200"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -207,7 +207,7 @@ const AdminDashboard = () => {
                         <div className="flex items-center space-x-3 ml-4">
                           <button 
                             onClick={() => { setEditingUser(user); setShowUserForm(true); }} 
-                            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
+                            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
                           >
                             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />

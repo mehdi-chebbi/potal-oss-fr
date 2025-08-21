@@ -58,32 +58,32 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
   };
   
   return (
-    <div className="bg-gradient-to-b from-green-50 to-blue-50">
+    <div className="bg-gradient-to-b from-yellow-50 to-blue-50">
       <div
         className="relative bg-cover bg-center h-96 sm:h-[600px] flex items-center justify-center text-center"
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(22, 101, 52, 0.8), rgba(34, 197, 94, 0.7), rgba(74, 222, 128, 0.6)), url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')",
+          backgroundImage: "linear-gradient(135deg, rgba(202, 138, 4, 0.8), rgba(234, 179, 8, 0.7), rgba(250, 204, 21, 0.6)), url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           <div className="mb-6">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="text-green-200 font-medium text-sm">🌍 {t('home.hero.badge')}</span>
+              <span className="text-yellow-200 font-medium text-sm">🌍 {t('home.hero.badge')}</span>
             </div>
           </div>
           <h1 className="text-5xl sm:text-7xl font-black text-white leading-tight mb-6 drop-shadow-lg">
             Sahara and Sahel
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-300">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-blue-300">
               Observatory
             </span>
           </h1>
-          <p className="text-xl sm:text-2xl text-green-100 mb-10 leading-relaxed max-w-3xl mx-auto font-light">
+          <p className="text-xl sm:text-2xl text-yellow-100 mb-10 leading-relaxed max-w-3xl mx-auto font-light">
             Creating partnerships to address water resources management and implement international agreements on land degradation, biodiversity and climate change in Africa.
           </p>
           <a
             href="#opportunities"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-full shadow-2xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-bold rounded-full shadow-2xl hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105"
           >
             <span>{t('home.hero.cta')}</span>
             <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -93,17 +93,17 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
         </div>
       </div>
       
-      <div id="opportunities" className="py-20 bg-gradient-to-b from-green-50 to-blue-50">
+      <div id="opportunities" className="py-20 bg-gradient-to-b from-yellow-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200 mb-4">
-              <span className="text-green-800 font-semibold text-sm">💼 {t('home.section.badge')}</span>
+            <div className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-yellow-100 to-blue-100 rounded-full border border-yellow-200 mb-4">
+              <span className="text-yellow-800 font-semibold text-sm">💼 {t('home.section.badge')}</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">
               {t('home.section.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">{t('home.section.subtitle')}</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-blue-500 mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8">
@@ -130,7 +130,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                       id="search"
                       name="search"
                       placeholder={t('filters.search.placeholder')}
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={filters.search}
                       onChange={handleFilterChange}
                     />
@@ -145,7 +145,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                   <select
                     id="type"
                     name="type"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                     value={filters.type}
                     onChange={handleFilterChange}
                   >
@@ -163,7 +163,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                   <select
                     id="country"
                     name="country"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                     value={filters.country}
                     onChange={handleFilterChange}
                   >
@@ -181,7 +181,7 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                   <select
                     id="department"
                     name="department"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                     value={filters.department}
                     onChange={handleFilterChange}
                   >
@@ -199,14 +199,12 @@ const HomePage = ({ offers }: { offers: Offer[] }) => {
                   <select
                     id="status"
                     name="status"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                     value={filters.status}
                     onChange={handleFilterChange}
                   >
-                    {statusOptions.map(option => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
+                    {statusOptions.map(opt => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
                     ))}
                   </select>
                 </div>

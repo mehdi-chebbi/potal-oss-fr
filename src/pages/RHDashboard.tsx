@@ -201,7 +201,7 @@ const RHDashboard = () => {
     }
   };
   
-  if (isLoading) return <div className="flex justify-center items-center h-64"><div className="animate-spin h-12 w-12 border-t-2 border-green-600"></div></div>;
+  if (isLoading) return <div className="flex justify-center items-center h-64"><div className="animate-spin h-12 w-12 border-t-2 border-yellow-500"></div></div>;
   
   return (
     <div className="py-8 bg-gray-50 min-h-screen">
@@ -210,7 +210,7 @@ const RHDashboard = () => {
           <select 
             value={activeTab} 
             onChange={e => setActiveTab(e.target.value as any)} 
-            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 font-medium"
+            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-gray-900 font-medium"
           >
             <option value="offers">{t('rh.tabs.offers')}</option>
             <option value="applications">{t('rh.tabs.applications')}</option>
@@ -223,7 +223,7 @@ const RHDashboard = () => {
               onClick={() => setActiveTab('offers')} 
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 ${
                 activeTab === 'offers' 
-                  ? 'border-green-500 text-green-600' 
+                  ? 'border-yellow-500 text-yellow-600' 
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -241,7 +241,7 @@ const RHDashboard = () => {
               onClick={() => setActiveTab('applications')} 
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 ${
                 activeTab === 'applications' 
-                  ? 'border-green-500 text-green-600' 
+                  ? 'border-yellow-500 text-yellow-600' 
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -278,7 +278,7 @@ const RHDashboard = () => {
               </div>
               <button 
                 onClick={() => { setEditingOffer(null); setShowOfferForm(true); }} 
-                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200"
+                className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white font-medium rounded-lg shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -311,7 +311,7 @@ const RHDashboard = () => {
                         id="offers-search"
                         name="search"
                         placeholder={t('rh.search.offers.placeholder')}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                         value={offersFilters.search}
                         onChange={handleOffersFilterChange}
                       />
@@ -326,7 +326,7 @@ const RHDashboard = () => {
                     <select
                       id="offers-type"
                       name="type"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={offersFilters.type}
                       onChange={handleOffersFilterChange}
                     >
@@ -344,7 +344,7 @@ const RHDashboard = () => {
                     <select
                       id="offers-country"
                       name="country"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={offersFilters.country}
                       onChange={handleOffersFilterChange}
                     >
@@ -362,7 +362,7 @@ const RHDashboard = () => {
                     <select
                       id="offers-department"
                       name="department"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={offersFilters.department}
                       onChange={handleOffersFilterChange}
                     >
@@ -380,7 +380,7 @@ const RHDashboard = () => {
                     <select
                       id="offers-status"
                       name="status"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={offersFilters.status}
                       onChange={handleOffersFilterChange}
                     >
@@ -426,7 +426,7 @@ const RHDashboard = () => {
                     {t('rh.country')}: {offersFilters.country}
                     <button 
                       onClick={() => setOffersFilters(prev => ({ ...prev, country: '' }))}
-                      className="ml-2 text-green-600 hover:text-green-900"
+                      className="ml-2 text-yellow-600 hover:text-yellow-900"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -504,7 +504,7 @@ const RHDashboard = () => {
                   <p className="text-gray-500 mb-6">{t('rh.noOffers.subtitle')}</p>
                   <button 
                     onClick={() => { setEditingOffer(null); setShowOfferForm(true); }} 
-                    className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors duration-200"
+                    className="inline-flex items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition-colors duration-200"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -522,8 +522,8 @@ const RHDashboard = () => {
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
                             <div className="flex items-center mb-2">
-                              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6" />
                                 </svg>
                               </div>
@@ -552,7 +552,7 @@ const RHDashboard = () => {
                           <div className="flex space-x-3 ml-4">
                             <button 
                               onClick={() => { setEditingOffer(offer); setShowOfferForm(true); }} 
-                              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
+                              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
                             >
                               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -610,7 +610,7 @@ const RHDashboard = () => {
                         id="applications-search"
                         name="search"
                         placeholder={t('rh.search.applications.placeholder')}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                         value={applicationsFilters.search}
                         onChange={handleApplicationsFilterChange}
                       />
@@ -625,7 +625,7 @@ const RHDashboard = () => {
                     <select
                       id="applications-offerType"
                       name="offerType"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={applicationsFilters.offerType}
                       onChange={handleApplicationsFilterChange}
                     >
@@ -643,7 +643,7 @@ const RHDashboard = () => {
                     <select
                       id="applications-department"
                       name="department"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={applicationsFilters.department}
                       onChange={handleApplicationsFilterChange}
                     >
@@ -661,7 +661,7 @@ const RHDashboard = () => {
                     <select
                       id="applications-applicantCountry"
                       name="applicantCountry"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                       value={applicationsFilters.applicantCountry}
                       onChange={handleApplicationsFilterChange}
                     >
@@ -721,7 +721,7 @@ const RHDashboard = () => {
                     {t('rh.label.country')}: {applicationsFilters.applicantCountry}
                     <button 
                       onClick={() => setApplicationsFilters(prev => ({ ...prev, applicantCountry: '' }))}
-                      className="ml-2 text-green-600 hover:text-green-900"
+                      className="ml-2 text-yellow-600 hover:text-yellow-900"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

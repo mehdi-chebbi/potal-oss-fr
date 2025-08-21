@@ -19,7 +19,7 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
           <span className={`px-2 py-1 text-xs font-semibold rounded ${offerTypeInfo.color}`}>
             {offerTypeInfo.name}
           </span>
-          <span className={`px-2 py-1 text-xs font-semibold rounded ${isExpired ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+          <span className={`px-2 py-1 text-xs font-semibold rounded ${isExpired ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'}`}>
             {isExpired ? t('offer.expired') : `${t('offer.closes')} ${deadlineDate.toLocaleDateString()}`}
           </span>
         </div>
