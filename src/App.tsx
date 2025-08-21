@@ -89,32 +89,31 @@ const App = () => {
   }
   
   return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-        <header className="bg-gradient-to-r from-blue-700 to-blue-800 shadow-lg border-b border-blue-900/20">
+      <div className="min-h-screen bg-gradient-to-b from-white to-blue-50/30">
+        <header className="bg-white shadow-sm border-b border-blue-100">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="w-full py-4 flex items-center justify-between">
               <LangLink 
                 to={user ? (user.role === 'rh' ? '/rh-dashboard' : '/admin-dashboard') : '/'} 
-                className="flex items-center group transition-all duration-200 hover:scale-105"
+                className="flex items-center group transition-all duration-200 hover:scale-[1.01]"
               >
                 <div className="relative">
-                  <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-200">
+                  <div className="h-12 w-12 rounded-xl bg-amber-400 flex items-center justify-center shadow-sm">
                     <span className="text-blue-900 font-bold text-lg">OSS</span>
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
                 </div>
                 <div className="ml-4">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  <span className="text-2xl font-extrabold text-blue-900">
                     {t('app.brand.title')}
                   </span>
-                  <p className="text-sm text-blue-100 font-medium">{t('app.brand.subtitle')}</p>
+                  <p className="text-sm text-blue-700 font-medium">{t('app.brand.subtitle')}</p>
                 </div>
               </LangLink>
               
               <div className="flex items-center space-x-4">
                 <LangLink
                   to="/about"
-                  className="hidden sm:inline-flex items-center px-4 py-2 text-blue-100 hover:text-white font-medium rounded-lg hover:bg-blue-700/40 transition-colors duration-200"
+                  className="hidden sm:inline-flex items-center px-4 py-2 text-blue-700 hover:text-blue-900 font-medium rounded-lg hover:underline underline-offset-4 transition-colors duration-200"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -124,15 +123,15 @@ const App = () => {
                 
                 {user ? (
                   <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-3 px-4 py-2 bg-blue-700/40 rounded-lg border border-blue-600/40">
-                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                    <div className="flex items-center space-x-3 px-4 py-2 bg-blue-50 rounded-lg border border-blue-100">
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center">
                         <span className="text-white font-semibold text-sm">
                           {user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                         </span>
                       </div>
                       <div className="hidden sm:block">
-                        <p className="text-sm font-medium text-white/90">{t('nav.welcome')}</p>
-                        <p className="text-sm text-blue-100 font-semibold">{user.name}</p>
+                        <p className="text-sm font-medium text-blue-900">{t('nav.welcome')}</p>
+                        <p className="text-sm text-blue-700 font-semibold">{user.name}</p>
                       </div>
                       <div className={`hidden sm:flex px-2 py-1 rounded-full text-xs font-medium ${
                         user.role === 'admin' 
@@ -144,7 +143,7 @@ const App = () => {
                     </div>
                     <button 
                       onClick={handleLogout} 
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-blue-900 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md"
+                      className="inline-flex items-center px-4 py-2 border border-blue-200 text-sm font-medium rounded-lg text-blue-800 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-0 transition-colors duration-200"
                     >
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -155,7 +154,7 @@ const App = () => {
                 ) : (
                   <button 
                     onClick={() => setShowLogin(true)} 
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-blue-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="inline-flex items-center px-6 py-3 text-sm font-semibold rounded-lg text-blue-900 bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300 transition-colors duration-200 shadow-sm"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7c1.13 0 2.08.402 2.599 1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -239,17 +238,17 @@ const App = () => {
           </Routes>
         </main>
         
-        <footer className="bg-gradient-to-b from-blue-800 to-blue-900 border-t border-blue-900/20 mt-16 text-blue-100">
+        <footer className="border-t-4 border-amber-400 bg-blue-900 mt-16 text-blue-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="grid md:grid-cols-3 gap-8">
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="h-10 w-10 rounded-xl bg-yellow-400 flex items-center justify-center">
+                  <div className="h-10 w-10 rounded-xl bg-amber-400 flex items-center justify-center shadow">
                     <span className="text-blue-900 font-bold text-lg">OSS</span>
                   </div>
                   <span className="ml-3 text-lg font-bold text-white">{t('app.brand.title')}</span>
                 </div>
-                <p className="text-blue-100/80 leading-relaxed">
+                <p className="text-blue-200 leading-relaxed">
                   {t('app.brand.subtitle')} - Connecting talent with opportunities across North Africa.
                 </p>
                 <div className="flex space-x-4">
@@ -269,10 +268,10 @@ const App = () => {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-white">{t('footer.quickLinks')}</h3>
                 <div className="space-y-2">
-                  <LangLink to="/about" className="block text-blue-100 hover:text-white transition-colors">{t('footer.about')}</LangLink>
-                  <a href="#opportunities" className="block text-blue-100 hover:text-white transition-colors">{t('footer.currentOpportunities')}</a>
-                  <a href="#" className="block text-blue-100 hover:text-white transition-colors">{t('footer.applicationProcess')}</a>
-                  <a href="#" className="block text-blue-100 hover:text-white transition-colors">{t('footer.contactUs')}</a>
+                  <LangLink to="/about" className="block text-blue-200 hover:text-white hover:underline underline-offset-4 transition-colors">{t('footer.about')}</LangLink>
+                  <a href="#opportunities" className="block text-blue-200 hover:text-white hover:underline underline-offset-4 transition-colors">{t('footer.currentOpportunities')}</a>
+                  <a href="#" className="block text-blue-200 hover:text-white hover:underline underline-offset-4 transition-colors">{t('footer.applicationProcess')}</a>
+                  <a href="#" className="block text-blue-200 hover:text-white hover:underline underline-offset-4 transition-colors">{t('footer.contactUs')}</a>
                 </div>
               </div>
               
@@ -280,17 +279,17 @@ const App = () => {
                 <h3 className="text-lg font-semibold text-white">{t('footer.contactInformation')}</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <svg className="w-5 h-5 text-yellow-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-amber-300 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <p className="text-blue-100 text-sm">{t('footer.location')}</p>
+                    <p className="text-blue-200 text-sm">{t('footer.location')}</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <svg className="w-5 h-5 text-yellow-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-amber-300 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <p className="text-blue-100 text-sm">careers@oss.org.tn</p>
+                    <p className="text-blue-200 text-sm">careers@oss.org.tn</p>
                   </div>
                 </div>
               </div>
@@ -298,13 +297,13 @@ const App = () => {
             
             <div className="mt-8 pt-8 border-t border-white/10">
               <div className="flex flex-col md:flex-row justify-between items-center">
-                <p className="text-blue-100/80 text-sm">
+                <p className="text-blue-200 text-sm">
                   &copy; {new Date().getFullYear()} {t('app.brand.subtitle')}. {t('footer.copyright')}
                 </p>
                 <div className="flex space-x-6 mt-4 md:mt-0">
-                  <a href="#" className="text-blue-200 hover:text-white text-sm transition-colors">{t('footer.privacy')}</a>
-                  <a href="#" className="text-blue-200 hover:text-white text-sm transition-colors">{t('footer.terms')}</a>
-                  <a href="#" className="text-blue-200 hover:text-white text-sm transition-colors">{t('footer.accessibility')}</a>
+                  <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors hover:underline underline-offset-4">{t('footer.privacy')}</a>
+                  <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors hover:underline underline-offset-4">{t('footer.terms')}</a>
+                  <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors hover:underline underline-offset-4">{t('footer.accessibility')}</a>
                 </div>
               </div>
             </div>
