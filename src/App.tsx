@@ -231,6 +231,10 @@ const App = () => {
             <Route path="/fr/offer/:id" element={<OfferDetailPage />} />
             {user?.role === 'rh' && <Route path="/rh-dashboard" element={<RHDashboard />} />}
             {user?.role === 'admin' && <Route path="/admin-dashboard" element={<AdminDashboard />} />}
+            {user?.role === 'rh' && <Route path="/en/rh-dashboard" element={<RHDashboard />} />}
+            {user?.role === 'rh' && <Route path="/fr/rh-dashboard" element={<RHDashboard />} />}
+            {user?.role === 'admin' && <Route path="/en/admin-dashboard" element={<AdminDashboard />} />}
+            {user?.role === 'admin' && <Route path="/fr/admin-dashboard" element={<AdminDashboard />} />}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
